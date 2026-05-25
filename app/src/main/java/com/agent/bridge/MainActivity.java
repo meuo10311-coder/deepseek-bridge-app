@@ -57,8 +57,7 @@ public class MainActivity extends Activity {
             StringBuilder script = new StringBuilder();
             String line;
             while ((line = reader.readLine()) != null) {
-                script.append(line).append('
-');
+                script.append(line).append('\n');
             }
             reader.close();
             webView.evaluateJavascript("javascript:(function(){" + script.toString() + "})()", null);
@@ -107,7 +106,7 @@ public class MainActivity extends Activity {
                 reader.close();
                 return response.toString();
             } catch (Exception error) {
-                return "{"ok":false,"error":"" + safe(error.getMessage()) + ""}";
+                return "{\"ok\":false,\"error\":\"" + safe(error.getMessage()) + "\"}";
             } finally {
                 if (connection != null) connection.disconnect();
             }
@@ -115,8 +114,7 @@ public class MainActivity extends Activity {
 
         private static String safe(String value) {
             if (value == null) return "unknown";
-            return value.replace("\", "\\").replace(""", "\"").replace("
-", " ").replace("", " ");
+            return value.replace("\\", "\\\\").replace("\"", "\\\"").replace("\n", " ").replace("\r", " ");
         }
     }
 
