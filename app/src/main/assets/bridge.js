@@ -126,7 +126,7 @@
   async function loop(){
     while(true){
       try {
-        await nativeGet('/bridge/status');
+        await nativeGet('/bridge/status?client=webview');
         if (!state.busy) {
           const task = await nativeGet('/bridge/next-task');
           if (task && task.action === 'PROMPT') runTask(task);
