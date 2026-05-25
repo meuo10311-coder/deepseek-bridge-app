@@ -91,7 +91,7 @@
   }
 
   function isStreaming(){
-    return /stop generating|generating|thinking|searching|writing|جاري|يكتب/i.test(document.body.innerText || '');
+    return /stop generating|generating response|writing answer|جاري الرد|يكتب الآن/i.test(document.body.innerText || '');
   }
 
   async function waitForAnswer(timeoutMs){
